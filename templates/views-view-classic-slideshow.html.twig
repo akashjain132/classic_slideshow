@@ -1,0 +1,57 @@
+{#
+/**
+ * Default theme implementation for Views to output a classic slideshow archive.
+ *
+ * Available variables:
+ * - options: View plugin style options:
+ *   - classes: CSS classes.
+ *   - classic_slideshow: Two-dimension array containing image and caption.
+ *
+ * @see template_preprocess_views_view_classic_slideshow()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'views-view-classic-slideshow',
+    options.classes
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  <div class="tm-slideshow-sandal uk-slidenav-position" data-uk-slideshow="{autoplay:true, animation: 'random-fx', pauseOnHover: true, duration: 500, autoplayInterval: 10000, kenburns: false}">
+    <ul class="uk-slideshow uk-overlay-active">
+      <!-- slides -->
+      {% for category in options.classic_slideshow %}
+        <li>
+          {{ category['image'] }}
+          <div class="uk-overlay-panel uk-flex uk-flex-middle uk-overlay-slide-left">
+            <div>
+              {{ category['caption'] }}
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% if options.pager == TRUE %}
+      <!-- navigation buttons -->
+      <div class="uk-margin">
+        <ul class="uk-dotnav uk-flex-right uk-hidden-touch">
+          {% for key in options.classic_slideshow|keys %}
+            <li data-uk-slideshow-item={{ key }}><a href=""></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {% if options.arrows == TRUE %}
+      <!-- navigation arrows -->
+      <div class="tm-slidenav uk-flex uk-flex-right uk-flex-middle">
+        <a href="" class="uk-slidenav uk-slidenav-previous uk-hidden-touch" data-uk-slideshow-item="previous"></a>
+        <a href="" class="uk-slidenav uk-slidenav-next uk-hidden-touch" data-uk-slideshow-item="next"></a>
+      </div>
+    {% endif %}
+
+  </div>
+</div>

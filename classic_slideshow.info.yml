@@ -1,0 +1,5 @@
+name: Classic Slideshow
+type: module
+description: Classic Slideshow can be used to create a slideshow of images with caption.
+core: 8.x
+package: Views

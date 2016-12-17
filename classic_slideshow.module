@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * Contains classic_slideshow.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function classic_slideshow_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the classic_slideshow module.
+    case 'help.page.classic_slideshow':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Classic Slideshow can be used to create a slideshow of images with caption.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+// Store TARDIS preprocess theme functions in a separate .inc file.
+\Drupal::moduleHandler()->loadInclude('classic_slideshow', 'inc', 'classic_slideshow.theme');
+
+/**
+ * Implements hook_theme().
+ */
+function classic_slideshow_theme($existing, $type, $theme, $path) {
+  return array(
+    'classic_slideshow' => array(
+      'file' => 'classic_slideshow.theme.inc',
+    ),
+  );
+}

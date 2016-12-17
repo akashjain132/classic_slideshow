@@ -1,0 +1,9 @@
+slideshow:
+  css:
+    component:
+      css/classic_slideshow.css: {}
+  js:
+    js/uikit.min.js: {}
+    js/uikit-core-components.js: {}
+  dependencies:
+    - core/jquery
